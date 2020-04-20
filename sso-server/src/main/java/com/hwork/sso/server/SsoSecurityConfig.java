@@ -7,6 +7,8 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 public class SsoSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -16,11 +18,16 @@ public class SsoSecurityConfig extends WebSecurityConfigurerAdapter {
         http.formLogin() //表单登录
                 .and()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.GET,"/login")
-                .permitAll()
+//                .antMatchers(HttpMethod.GET,"/login")
+//                .permitAll()
                 .anyRequest()
                 .authenticated();//所有请求都需要认证
         http.csrf().disable();
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 
     @Override

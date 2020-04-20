@@ -20,12 +20,6 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 @EnableAuthorizationServer
 @EnableConfigurationProperties(SecurityProperties.class)
 public class SsoAuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
     @Autowired
     private PasswordEncoder passwordEncoder;
 
