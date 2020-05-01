@@ -8,7 +8,6 @@ import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth
  * @author yangs
  */
 @SpringBootApplication
-@EnableOAuth2Sso
 public class SsoClient1Application {
     public static void main(String[] args) {
         SpringApplication.run(SsoClient1Application.class,args);
